@@ -9,19 +9,16 @@ const session = require('express-session');
 const passport = require('passport');
 const passportLocal = require('./config/passport-local-strategy');
 const MongoStore = require('connect-mongo')(session);
-// const sassMiddleware = require('node-sass-middleware');
+// const sassMiddleware =require('node-sass-middleware');
 
 
-
-// app.use(sassMiddleware,{
+// app.use(sassMiddleware({
 //     src: './assets/scss',
 //     dest: './assets/css',
 //     debug: true,
 //     outputStyle: 'extended',
 //     prefix: '/css'
-// });
-
-
+// }));
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -32,6 +29,8 @@ app.use(expressLayouts);
 // extract style and scripts from sub pages into the layout
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
+
+
 
 
 // set up the view engine
@@ -59,7 +58,6 @@ app.use(session({
         }
     )
 }));
-
 
 app.use(passport.initialize());
 app.use(passport.session());
